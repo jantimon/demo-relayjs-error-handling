@@ -1,0 +1,35 @@
+{
+  "name": "demo-relayjs-error-handling",
+  "private": true,
+  "version": "0.0.0",
+  "description": "A minimal StackBlitz compatible, React + Relay GraphQL demo",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx server.ts",
+    "build": "tsc && vite build",
+    "format": "prettier --write .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@types/express": "^5.0.3",
+    "@types/react-relay": "^18.2.1",
+    "@types/relay-runtime": "^19.0.2",
+    "babel-plugin-relay": "^20.1.1",
+    "express": "^5.1.0",
+    "graphql": "^16.11.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-relay": "^20.1.1",
+    "relay-compiler": "^20.1.1",
+    "relay-runtime": "^20.1.1",
+    "tsx": "^4.20.3"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^5.0.0",
+    "prettier": "^3.2.5",
+    "typescript": "~5.9.2",
+    "vite": "^7.1.1"
+  }
+}

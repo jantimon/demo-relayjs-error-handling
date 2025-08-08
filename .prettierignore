@@ -1,0 +1,8 @@
+node_modules/
+dist/
+build/
+src/__generated__/
+*.min.js
+*.min.css
+package-lock.json
+*.md
