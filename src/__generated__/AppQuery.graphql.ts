@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<844698f3f74dbc8ac29b5f82a0b7e696>>
+ * @generated SignedSource<<2e1c793e9b08b5132f18ba28e2dcce8b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,9 +13,9 @@ import { FragmentRefs } from "relay-runtime";
 export type AppQuery$variables = Record<PropertyKey, never>;
 export type AppQuery$data = {
   readonly movies: ReadonlyArray<{
-    readonly id: string;
+    readonly id: string | null | undefined;
     readonly " $fragmentSpreads": FragmentRefs<"Movies_movies">;
-  }>;
+  }> | null | undefined;
 };
 export type AppQuery = {
   response: AppQuery$data;

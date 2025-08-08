@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a746db0edcfb3b861ad7be5b74a0bdce>>
+ * @generated SignedSource<<93351e7fb66950283b3d79c16ca551a6>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type Movies_movies$data = ReadonlyArray<{
-  readonly id: string;
+  readonly id: string | null | undefined;
   readonly " $fragmentSpreads": FragmentRefs<"Movie_movie">;
   readonly " $fragmentType": "Movies_movies";
 }>;

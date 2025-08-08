@@ -37,19 +37,19 @@
 
         button.onclick = async () => {
           try {
-            const response = await fetch('/toggle-errors', {
-              method: 'POST'
+            const response = await fetch("/toggle-errors", {
+              method: "POST",
             });
             const data = await response.json();
             isErrorSimulationEnabled = data.simulateDirectorError;
             button.textContent = isErrorSimulationEnabled
               ? "Disable Errors"
               : "Simulate Errors";
-            
+
             // Reload to apply changes
             setTimeout(() => window.location.reload(), 100);
           } catch (error) {
-            console.error('Failed to toggle errors:', error);
+            console.error("Failed to toggle errors:", error);
           }
         };
 

@@ -21,7 +21,7 @@ function App() {
         <h1>🎬 Movie Database</h1>
         <p>A simple Relay GraphQL demo</p>
       </header>
-      <Movies movies={data.movies} />
+      {data.movies && <Movies movies={data.movies} />}
     </main>
   );
 }

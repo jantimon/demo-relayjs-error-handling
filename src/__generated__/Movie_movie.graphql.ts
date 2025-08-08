@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<94ae476d16413d3d96f71d2a57c89a56>>
+ * @generated SignedSource<<e50b59780fa09ffdce31d2faddf0f45d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,12 +11,12 @@
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type Movie_movie$data = {
-  readonly director: string;
-  readonly genre: string;
-  readonly id: string;
+  readonly director: string | null | undefined;
+  readonly genre: string | null | undefined;
+  readonly id: string | null | undefined;
   readonly rating: number | null | undefined;
-  readonly title: string;
-  readonly year: number;
+  readonly title: string | null | undefined;
+  readonly year: number | null | undefined;
   readonly " $fragmentType": "Movie_movie";
 };
 export type Movie_movie$key = {

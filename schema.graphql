@@ -1,14 +1,16 @@
+directive @semanticNonNull(levels: [Int] = [0]) on FIELD_DEFINITION
+
 type Query {
-  movies: [Movie!]!
+  movies: [Movie!] @semanticNonNull
   movie(id: ID!): Movie
 }
 
 type Movie {
-  id: ID!
-  title: String!
-  director: String!
-  year: Int!
-  genre: String!
+  id: ID @semanticNonNull
+  title: String @semanticNonNull
+  director: String @semanticNonNull
+  year: Int @semanticNonNull
+  genre: String @semanticNonNull
   rating: Float
   description: String
 }
