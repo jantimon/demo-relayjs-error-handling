@@ -10,5 +10,58 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <script>
+      // Simple variable to track error state
+      let isErrorSimulationEnabled = false;
+
+      // Error simulation toggle button
+      function createErrorToggle() {
+        const button = document.createElement("button");
+        button.textContent = isErrorSimulationEnabled
+          ? "Disable Errors"
+          : "Simulate Errors";
+        button.style.cssText = `
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          padding: 10px 15px;
+          background: #007acc;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 14px;
+          z-index: 1000;
+        `;
+
+        button.onclick = async () => {
+          try {
+            const response = await fetch('/toggle-errors', {
+              method: 'POST'
+            });
+            const data = await response.json();
+            isErrorSimulationEnabled = data.simulateDirectorError;
+            button.textContent = isErrorSimulationEnabled
+              ? "Disable Errors"
+              : "Simulate Errors";
+            
+            // Reload to apply changes
+            setTimeout(() => window.location.reload(), 100);
+          } catch (error) {
+            console.error('Failed to toggle errors:', error);
+          }
+        };
+
+        document.body.appendChild(button);
+      }
+
+      // Create button when DOM is ready
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", createErrorToggle);
+      } else {
+        createErrorToggle();
+      }
+    </script>
   </body>
 </html>

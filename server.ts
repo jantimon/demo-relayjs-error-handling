@@ -2,6 +2,8 @@ import express from "express";
 import { createServer as createViteServer } from "vite";
 import { mockMovies } from "./src/data/movies.js";
 
+let simulateDirectorError = false;
+
 async function createServer() {
   const app = express();
 
@@ -10,22 +12,60 @@ async function createServer() {
     appType: "spa",
   });
 
+  // Endpoint to toggle error simulation
+  app.post("/toggle-errors", (_req, res) => {
+    simulateDirectorError = !simulateDirectorError;
+    res.json({ simulateDirectorError });
+  });
+
   app.post("/graphql", express.json(), (req, res) => {
     try {
-      const { query, variables } = req.body;
+      const { query } = req.body;
 
       const operationMatch = query.match(/query\s+(\w+)/);
       const operationName = operationMatch?.[1];
 
-      let result;
+      let result: any;
 
       switch (operationName) {
         case "AppQuery":
-          result = {
-            data: {
-              movies: mockMovies,
-            },
-          };
+          const shouldSimulateDirectorError = simulateDirectorError;
+
+          if (shouldSimulateDirectorError) {
+            // Simulate field errors on director field for some movies
+            const moviesWithErrors = mockMovies.map((movie, index) => {
+              // Make every other movie's director field fail
+              if (index % 2 === 0) {
+                return { ...movie, director: null };
+              }
+              return movie;
+            });
+
+            const errors = mockMovies
+              .map((_, index) => {
+                if (index % 2 === 0) {
+                  return {
+                    message: "Failed to fetch director information",
+                    path: ["movies", index, "director"],
+                  };
+                }
+                return null;
+              })
+              .filter(Boolean);
+
+            result = {
+              data: {
+                movies: moviesWithErrors,
+              },
+              errors,
+            };
+          } else {
+            result = {
+              data: {
+                movies: mockMovies,
+              },
+            };
+          }
           break;
 
         default:
