@@ -3,7 +3,7 @@ import { graphql } from "relay-runtime";
 import type { Movie_movie$key } from "./__generated__/Movie_movie.graphql";
 
 const movieFragment = graphql`
-  fragment Movie_movie on Movie {
+  fragment Movie_movie on Movie @catch {
     id
     title
     director
@@ -18,15 +18,22 @@ interface MovieProps {
 }
 
 function Movie({ movie }: MovieProps) {
-  const data = useFragment(movieFragment, movie);
+  const result = useFragment(movieFragment, movie);
+
+  if (!result.ok) {
+    return null;
+  }
+
+  const data = result.value;
 
   return (
     <article>
       <header>
         <h3>{data.title}</h3>
         <p>
-          <strong>Director:</strong> {data.director} |<strong> Year:</strong>{" "}
-          {data.year} |<strong> Genre:</strong> {data.genre}
+          <strong>Director:</strong> {data.director.toLowerCase()} |
+          <strong> Year:</strong> {data.year} |<strong> Genre:</strong>{" "}
+          {data.genre}
           {data.rating && (
             <span>
               {" "}

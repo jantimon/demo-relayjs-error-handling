@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e50b59780fa09ffdce31d2faddf0f45d>>
+ * @generated SignedSource<<8b9d769c443a8835264328f682e753f3>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,16 +9,16 @@
 // @ts-nocheck
 
 import { ReaderFragment } from 'relay-runtime';
-import { FragmentRefs } from "relay-runtime";
-export type Movie_movie$data = {
-  readonly director: string | null | undefined;
-  readonly genre: string | null | undefined;
-  readonly id: string | null | undefined;
+import { FragmentRefs, Result } from "relay-runtime";
+export type Movie_movie$data = Result<{
+  readonly director: string;
+  readonly genre: string;
+  readonly id: string;
   readonly rating: number | null | undefined;
-  readonly title: string | null | undefined;
-  readonly year: number | null | undefined;
+  readonly title: string;
+  readonly year: number;
   readonly " $fragmentType": "Movie_movie";
-};
+}, unknown>;
 export type Movie_movie$key = {
   readonly " $data"?: Movie_movie$data;
   readonly " $fragmentSpreads": FragmentRefs<"Movie_movie">;
@@ -27,7 +27,9 @@ export type Movie_movie$key = {
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
-  "metadata": null,
+  "metadata": {
+    "catchTo": "RESULT"
+  },
   "name": "Movie_movie",
   "selections": [
     {
@@ -77,6 +79,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "780a552e8ba148ed16281fb664fc1921";
+(node as any).hash = "9733cd9bb7bfc1e7d1fb4aa604f28fbc";
 
 export default node;
