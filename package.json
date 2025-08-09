@@ -2,13 +2,18 @@
   "name": "demo-relayjs-error-handling",
   "private": true,
   "version": "0.0.0",
-  "description": "A minimal StackBlitz compatible, React + Relay GraphQL demo",
+  "description": "React + Relay GraphQL demo showcasing explicit error handling with custom FragmentError class and ErrorBoundary",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jantimon/demo-relayjs-error-handling.git"
+  },
   "scripts": {
     "dev": "tsx server.ts",
     "build": "tsc && vite build",
     "format": "prettier --write .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "relay": "npx relay-compiler"
   },
   "dependencies": {
     "@types/express": "^5.0.3",

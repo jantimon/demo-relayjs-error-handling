@@ -1,6 +1,10 @@
 import { useFragment } from "react-relay";
 import { graphql } from "relay-runtime";
 import Movie from "./Movie";
+import {
+  useFieldErrorHandler,
+  ErrorBoundary,
+} from "./RelayExplicitErrorHandling";
 import type { Movies_movies$key } from "./__generated__/Movies_movies.graphql";
 
 const moviesFragment = graphql`
@@ -15,10 +19,11 @@ interface MoviesProps {
 }
 
 function Movies({ movies }: MoviesProps) {
+  const errorHandler = useFieldErrorHandler();
   const data = useFragment(moviesFragment, movies);
 
   return (
-    <>
+    <ErrorBoundary fieldErrorHandlers={[errorHandler]}>
       <section>
         <header>
           <h2>Featured Movies</h2>
@@ -26,11 +31,11 @@ function Movies({ movies }: MoviesProps) {
         </header>
         <div>
           {data.map((movie) => (
-            <Movie key={movie.id} movie={movie} />
+            <Movie key={movie.id} movie={movie} onError={errorHandler} />
           ))}
         </div>
       </section>
-    </>
+    </ErrorBoundary>
   );
 }
 

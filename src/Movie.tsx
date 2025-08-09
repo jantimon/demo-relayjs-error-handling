@@ -1,5 +1,6 @@
-import { useFragment } from "react-relay";
 import { graphql } from "relay-runtime";
+import { useFragmentWithError } from "./RelayExplicitErrorHandling";
+import type { ErrorHandler } from "./RelayExplicitErrorHandling";
 import type { Movie_movie$key } from "./__generated__/Movie_movie.graphql";
 
 const movieFragment = graphql`
@@ -15,16 +16,11 @@ const movieFragment = graphql`
 
 interface MovieProps {
   movie: Movie_movie$key;
+  onError: ErrorHandler;
 }
 
-function Movie({ movie }: MovieProps) {
-  const result = useFragment(movieFragment, movie);
-
-  if (!result.ok) {
-    return null;
-  }
-
-  const data = result.value;
+function Movie({ movie, onError }: MovieProps) {
+  const data = useFragmentWithError(movieFragment, movie, onError);
 
   return (
     <article>
