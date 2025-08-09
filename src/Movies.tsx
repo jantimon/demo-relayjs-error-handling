@@ -23,7 +23,7 @@ function Movies({ movies }: MoviesProps) {
   const data = useFragment(moviesFragment, movies);
 
   return (
-    <ErrorBoundary fieldErrorHandlers={[errorHandler]}>
+    <ErrorBoundary fieldErrorHandlers={errorHandler}>
       <section>
         <header>
           <h2>Featured Movies</h2>
