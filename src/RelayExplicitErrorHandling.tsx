@@ -110,13 +110,22 @@ export function useFragmentWithError<TKey extends RelayKeyWithCatch>(
   if (!result?.ok) {
     // Throw to trigger the <ErrorBoundary /> and prevent hook consumers from accessing
     // the error data
-    throw new FragmentError(
-      "Fragment error occurred",
-      errorHandler,
-      result?.errors,
-    );
+    throwErrorHandler(errorHandler, result?.errors);
   }
   return result.value as ExtractValue<KeyTypeData<TKey>>;
+}
+
+/**
+ * Trigger the <ErrorBoundary /> of the errorHandler
+ *
+ * @param errorHandler
+ * @param errors
+ */
+export function throwErrorHandler(
+  errorHandler: ErrorHandler,
+  errors: readonly unknown[] | undefined,
+): never {
+  throw new FragmentError("Fragment error occurred", errorHandler, errors);
 }
 
 // Props for our ErrorBoundary component
